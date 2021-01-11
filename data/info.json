@@ -1,3 +1,104 @@
 {
-  "lang": ["zh-cn", "zh-tw", "en-us", "ko-kr", "ja-jp", "es-es", "fr-fr", "ru-ru", "th-th", "vi-vn", "de-de", "id-id", "pt-pt"]
+  "lang": [
+    "zh-cn",
+    "zh-tw",
+    "en-us",
+    "ko-kr",
+    "ja-jp",
+    "es-es",
+    "fr-fr",
+    "ru-ru",
+    "th-th",
+    "vi-vn",
+    "de-de",
+    "id-id",
+    "pt-pt"
+  ],
+  "data": {
+    "200": [
+      {
+        "id": "efaa46cf85a2b4ee59c86f473dfc49246a0560",
+        "title": {
+          "zh-cn": "「奔行<color=#757acdFF>世间</color>」常驻祈愿",
+          "zh-tw": "「奔行<color=#757acdFF>世間</color>」常駐祈願",
+          "en-us": "Standard Wish \"Wanderlust <color=#757acdFF>Invocation</color>\"",
+          "ko-kr": "「<color=#757acdFF>세상</color> 여행」 일반 기원",
+          "ja-jp": "通常祈願・「奔走<color=#757acdFF>世間</color>」",
+          "es-es": "Gachapón permanente «<color=#757acdFF>Pasión</color> por viajar»",
+          "fr-fr": "Vœux : « Envie de <color=#757acdFF>voyage</color> »",
+          "ru-ru": "Стандартная Молитва:  Жажда <color=#757acdFF>странствий</color>",
+          "th-th": "อธิษฐานถาวร การอธิษฐาน<color=#757acdFF>แห่งการเดินทาง</color>",
+          "vi-vn": "Cầu Nguyện Thường: Du Hành <color=#757acdFF>Thế Gian</color>",
+          "de-de": "Standardgebet <color=#757acdFF>Wander</color>lust",
+          "id-id": "Permohonan Standar - Wanderlust <color=#757acdFF>Invocation</color>",
+          "pt-pt": "Oração Comum - <color=#757acdFF>Invocação</color> do Mochileiro"
+        },
+        "r5up": []
+      }
+    ],
+    "301": [
+      {
+        "id": "8b5ca18f79ee64a0cd71826c24a0c0808ac813",
+        "title": {
+          "zh-cn": "「<color=#cc9046FF>深秘</color>之息」活动祈愿",
+          "zh-tw": "「<color=#cc9046FF>深秘</color>之息」活動祈願",
+          "en-us": "Event Wish \"<color=#cc9046FF>Secretum</color> Secretorum\"",
+          "ko-kr": "「<color=#cc9046FF>심비</color>의 숨결」 이벤트 기원",
+          "ja-jp": " イベント祈願・「<color=#cc9046FF>深秘</color>の生息」",
+          "es-es": "Gachapón promocional «Susurros <color=#cc9046FF>enigmáticos</color>»",
+          "fr-fr": "Vœux événements : « Nouvelles <color=#cc9046FF>mystérieuses</color> »",
+          "ru-ru": "Молитва события: <color=#cc9046FF>Таинственные</color> секреты",
+          "th-th": "กิจกรรมอธิษฐาน \"<color=#cc9046FF>ความลับ</color>ในห้วงลึก\"",
+          "vi-vn": "Sự kiện cầu nguyện Hơi Thở <color=#cc9046FF>Thần Bí</color>",
+          "de-de": " Aktionsgebet „<color=#cc9046FF>Rätselhafte</color> Worte“",
+          "id-id": "Event Permohonan - <color=#cc9046FF>Enigma</color> Kehidupan",
+          "pt-pt": "Oração de Evento - Notícias <color=#cc9046FF>Enigmáticas</color>"
+        },
+        "r5up": [
+          {
+            "item_id": 1038,
+            "item_type": "角色",
+            "item_name": "阿贝多"
+          }
+        ]
+      }
+    ],
+    "302": [
+      {
+        "id": "680f52fb2fed74404199b9b5a8eac123e70974",
+        "title": {
+          "zh-cn": "「<color=#EF7C1AFF>神铸</color>赋形」活动祈愿",
+          "zh-tw": "「<color=#EF7C1AFF>神鑄</color>賦形」活動祈願",
+          "en-us": "Event Wish \"<color=#EF7C1AFF>Epitome</color> Invocation\"",
+          "ko-kr": "「<color=#EF7C1AFF>신</color>의 주조」 이벤트 기원",
+          "ja-jp": "イベント祈願・「<color=#EF7C1AFF>神鋳</color>賦形」",
+          "es-es": "Gachapón promocional «<color=#EF7C1AFF>Encarnación</color> divina»",
+          "fr-fr": "Vœux événements : « Incarnation <color=#EF7C1AFF>divine</color> »",
+          "ru-ru": "Молитва события: <color=#EF7C1AFF>Воплощение</color> божества",
+          "th-th": "กิจกรรมอธิษฐาน \"<color=#EF7C1AFF>สรรค์สร้าง</color>เซียน\"",
+          "vi-vn": "Sự kiện cầu nguyện Thân Hình <color=#EF7C1AFF>Thần Đúc</color>",
+          "de-de": "Aktionsgebet <color=#EF7C1AFF>Göttliches</color> Werk",
+          "id-id": "Event Permohonan - <color=#EF7C1AFF>Epitome</color> Invocation",
+          "pt-pt": "Oração de Evento - <color=#EF7C1AFF>Encarnação</color> Divina"
+        },
+        "r5up": [
+          {
+            "item_id": 11504,
+            "item_type": "武器",
+            "item_name": "斫峰之刃"
+          },
+          {
+            "item_id": 14501,
+            "item_type": "武器",
+            "item_name": "天空之卷"
+          }
+        ]
+      }
+    ]
+  },
+  "id": [
+    "efaa46cf85a2b4ee59c86f473dfc49246a0560",
+    "680f52fb2fed74404199b9b5a8eac123e70974",
+    "8b5ca18f79ee64a0cd71826c24a0c0808ac813"
+  ]
 }
