@@ -54,7 +54,7 @@ const gacha301 = (type, data, info) => {
   } else {
     item = randomItem(data.r3)
   }
-  return [item, Object.assign({}, info, { isUp4, isUp5 })]
+  return [item, Object.assign({}, info, { isUp4, isUp5, count4Up, count5Up })]
 }
 
 const compareInfo = (newInfo, info) => {

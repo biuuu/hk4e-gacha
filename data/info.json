@@ -38,6 +38,31 @@
     ],
     "301": [
       {
+        "id": "2ffa459718702872a52867fa0521e32b6843b0",
+        "title": {
+          "zh-cn": "「<color=#35AACCFF>浮生</color>孰来」活动祈愿",
+          "zh-tw": "「<color=#35AACCFF>浮生</color>孰來」活動祈願",
+          "en-us": "Event Wish \"<color=#35AACCFF>Adrift</color> in the Harbor\"",
+          "ko-kr": "「<color=#35AACCFF>덧없는</color> 인생」 이벤트 기원",
+          "ja-jp": " イベント祈願・「<color=#35AACCFF>逸俗</color>逡巡」",
+          "es-es": "Gachapón promocional «Flotando a la <color=#35AACCFF>deriva</color>»",
+          "fr-fr": "Vœux événements : « Doute <color=#35AACCFF>passager</color> »",
+          "ru-ru": "Молитва события: <color=#35AACCFF>Эфемерное</color> недоверие",
+          "th-th": "กิจกรรมอธิษฐาน \"ม่านแห่ง<color=#35AACCFF>เมฆา</color>\"",
+          "vi-vn": "Sự kiện cầu nguyện <color=#35AACCFF>Hội Ngộ</color> Nơi Trần Thế",
+          "de-de": " Aktionsgebet „<color=#35AACCFF>Flüchtige</color> Bekanntschaft“",
+          "id-id": "Event Permohonan - <color=#35AACCFF>Misteri</color> Keabadian",
+          "pt-pt": "Oração de Evento - Perguntas <color=#35AACCFF>Temporárias</color>"
+        },
+        "r5up": [
+          {
+            "item_id": 1037,
+            "item_type": "角色",
+            "item_name": "甘雨"
+          }
+        ]
+      },
+      {
         "id": "8b5ca18f79ee64a0cd71826c24a0c0808ac813",
         "title": {
           "zh-cn": "「<color=#cc9046FF>深秘</color>之息」活动祈愿",
@@ -64,6 +89,36 @@
       }
     ],
     "302": [
+      {
+        "id": "b9ea98af845e34b444f7838c876c5a66701196",
+        "title": {
+          "zh-cn": "「<color=#EF7C1AFF>神铸</color>赋形」活动祈愿",
+          "zh-tw": "「<color=#EF7C1AFF>神鑄</color>賦形」活動祈願",
+          "en-us": "Event Wish \"<color=#EF7C1AFF>Epitome</color> Invocation\"",
+          "ko-kr": "「<color=#EF7C1AFF>신</color>의 주조」 이벤트 기원",
+          "ja-jp": "イベント祈願・「<color=#EF7C1AFF>神鋳</color>賦形」",
+          "es-es": "Gachapón promocional «<color=#EF7C1AFF>Encarnación</color> divina»",
+          "fr-fr": "Vœux événements : « Incarnation <color=#EF7C1AFF>divine</color> »",
+          "ru-ru": "Молитва события: <color=#EF7C1AFF>Воплощение</color> божества",
+          "th-th": "กิจกรรมอธิษฐาน \"<color=#EF7C1AFF>สรรค์สร้าง</color>เซียน\"",
+          "vi-vn": "Sự kiện cầu nguyện Thân Hình <color=#EF7C1AFF>Thần Đúc</color>",
+          "de-de": "Aktionsgebet <color=#EF7C1AFF>Göttliches</color> Werk",
+          "id-id": "Event Permohonan - <color=#EF7C1AFF>Epitome</color> Invocation",
+          "pt-pt": "Oração de Evento - <color=#EF7C1AFF>Encarnação</color> Divina"
+        },
+        "r5up": [
+          {
+            "item_id": 15502,
+            "item_type": "武器",
+            "item_name": "阿莫斯之弓"
+          },
+          {
+            "item_id": 12501,
+            "item_type": "武器",
+            "item_name": "天空之傲"
+          }
+        ]
+      },
       {
         "id": "680f52fb2fed74404199b9b5a8eac123e70974",
         "title": {
@@ -97,6 +152,8 @@
     ]
   },
   "id": [
+    "b9ea98af845e34b444f7838c876c5a66701196",
+    "2ffa459718702872a52867fa0521e32b6843b0",
     "efaa46cf85a2b4ee59c86f473dfc49246a0560",
     "680f52fb2fed74404199b9b5a8eac123e70974",
     "8b5ca18f79ee64a0cd71826c24a0c0808ac813"
