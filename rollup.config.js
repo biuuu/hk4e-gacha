@@ -10,7 +10,8 @@ import fs from 'fs-extra';
 import path from 'path';
 
 fs.emptyDirSync('dist')
-fs.emptyDirSync('dist/static/')
+fs.ensureDirSync('dist/static/')
+fs.copySync('./data/', './dist/data/')
 
 const production = !process.env.ROLLUP_WATCH;
 

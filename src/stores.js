@@ -1,9 +1,58 @@
-import { writable } from 'svelte/store'
+import { writable, derived } from 'svelte/store'
+import { getLocalInfo, saveInfo, infoKeys } from './utils'
 
-const showNpc = writable(false)
+const gachaInfoMap = new Map()
 
-setInterval(() => {
-  showNpc.update(n => !n)
-}, 3000)
+function createGachaInfo(id) {
+  if (gachaInfoMap.has(id)) return gachaInfoMap.get(id)
+  const info = getLocalInfo(id)
+  const infoCollection = {}
+  const args = []
+  infoKeys.forEach(key => {
+    let count = writable(info[key])
+    args.push(count)
+    infoCollection[key] = count
+  })
 
-export { showNpc }
+  const { subscribe } = derived(args, (list) => {
+    let obj = {}
+    infoKeys.forEach((key, idx) => {
+      obj[key] = list[idx]
+    })
+    return obj
+  })
+
+	const store = {
+    subscribe,
+    increment: (key) => {
+      infoCollection[key].update(n => n + 1)
+      info[key] += 1
+      saveInfo(id, info)
+    },
+    setMulti: (obj) => {
+      for (let key in obj) {
+        if (infoKeys.includes(key)) {
+          infoCollection[key].set(obj[key])
+          info[key] = obj[key]
+        }
+      }
+      saveInfo(id, info)
+    },
+    reset: (key) => {
+      infoCollection[key].set(0)
+      info[key] = 0
+      saveInfo(id, info)
+    },
+    resetAll: () => {
+      infoKeys.forEach(key => {
+        infoCollection[key].set(0)
+        info[key] = 0
+      })
+      saveInfo(id, info)
+    }
+  }
+  gachaInfoMap.set(id, store)
+  return store
+}
+
+export { createGachaInfo }
