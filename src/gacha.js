@@ -34,21 +34,21 @@ const gacha301 = (type, data, info) => {
   let item
   let { isUp4, isUp5, count4Up, count5Up } = info
   if (type === 5) {
-    if (!isUp5 || Math.random() < 0.5) {
-      isUp5 = 1
+    if (isUp5 || Math.random() < 0.5) {
+      isUp5 = 0
       count5Up++
       item = randomItem(data.r5up)
     } else {
-      isUp5 = 0
+      isUp5 = 1
       item = randomItem(data.r5)
     }
   } else if (type === 4) {
-    if (!isUp4 || Math.random() < 0.5) {
-      isUp4 = 1
+    if (isUp4 || Math.random() < 0.5) {
+      isUp4 = 0
       count4Up++
       item = randomItem(data.r4up)
     } else {
-      isUp4 = 0
+      isUp4 = 1
       item = randomItem(data.r4)
     }
   } else {
