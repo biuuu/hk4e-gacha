@@ -12,6 +12,7 @@ import path from 'path';
 fs.emptyDirSync('dist')
 fs.ensureDirSync('dist/static/')
 fs.copySync('./data/', './dist/data/')
+fs.writeFileSync('./dist/CNAME', 'ys.danmu9.com')
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -81,8 +82,8 @@ export default {
 		commonjs(),
 
 		html({
-			meta: [{ charset: 'utf-8' }, {name: 'viewport', content: 'width=492,user-scalable=no'}],
-			title: ''
+			meta: [{ charset: 'utf-8' }, {name: 'viewport', content: 'width=device-width, initial-scale=1'}],
+			title: '原神抽卡模拟器'
 		}),
 
 		// In dev mode, call `npm run start` once
