@@ -3,7 +3,7 @@ name: Build page
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -25,6 +25,5 @@ jobs:
       with:
         commit_message: Update page
         build_dir: dist
-        keep_history: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

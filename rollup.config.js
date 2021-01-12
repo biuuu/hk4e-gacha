@@ -82,6 +82,7 @@ export default {
 		commonjs(),
 
 		html({
+			attributes: {html: { lang: 'zh-CN' }},
 			meta: [{ charset: 'utf-8' }, {name: 'viewport', content: 'width=device-width, initial-scale=1'}],
 			title: '原神抽卡模拟器'
 		}),
