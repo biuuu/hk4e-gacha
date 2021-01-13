@@ -1,11 +1,10 @@
 <script>
 	import { createGachaInfo } from './stores'
-	import { afterUpdate, onMount } from 'svelte'
 	import gachaWith from './gacha'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'
 
-	let id = '2ffa459718702872a52867fa0521e32b6843b0'
+	let id = ''
 	let data
 	let info
 	let infoCache = {}
@@ -86,18 +85,13 @@
 		count.set(0)
 	}
 
-	const click = (key) => () => {
-		const func = { gacha, gacha1, gacha10, clear }
-		func[key]()
-	}
-
 </script>
 
 <div class="content">
-<button on:click={click('gacha')}>SSR</button>
-<button on:click={click('gacha10')}>10</button>
-<button on:click={click('gacha1')}>1</button>
-<button on:click={click('clear')}>clear</button>
+<button on:click={gacha}>SSR</button>
+<button on:click={gacha10}>10</button>
+<button on:click={gacha1}>1</button>
+<button on:click={clear}>clear</button>
 <select bind:value={type}>
 	{#each types as item}
 	<option value={item.id}>{item.text}</option>

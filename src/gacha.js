@@ -40,7 +40,11 @@ const recordCardList = (item, { list }) => {
   } else {
     savedItem.count++
   }
-  list.sort((a, b) => b.count - a.count).sort((a, b) => b.rank - a.rank)
+  list.sort((a, b) => b.count - a.count).sort((a, b) => b.rank - a.rank).sort((a, b) => {
+    if (a.item_type === '武器' && b.item_type === '角色' && a.rank === b.rank) return 1
+    if (a.item_type === b.item_type) return 0
+    if (b.item_type === '武器' && a.item_type === '角色' && a.rank === b.rank) return -1
+  })
 }
 
 const gacha301 = (type, data, info) => {
@@ -109,8 +113,9 @@ const detectGachType = (info, data, times = 1) => {
     } else if (data.type === '200') {
       gachaResult = gacha200(type, data, infoTmp)
     }
-    const [item, newInfo] = gachaResult
+    let [item, newInfo] = gachaResult
     info = newInfo
+    item = Object.assign({}, item)
     result.push(item)
     recordCardList(item, info)
   }
