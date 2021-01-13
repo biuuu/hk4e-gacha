@@ -30,6 +30,19 @@ const decideRarity = (info) => {
   return [type, Object.assign({}, info, { count3, count4, count5, until4, until5 })]
 }
 
+const recordCardList = (item, { list }) => {
+  if (item.rank <= 3) return
+  const savedItem = list.find(obj => obj.item_id === item.item_id)
+  if (!savedItem) {
+    list.push(Object.assign({
+      count: 1
+    }, item))
+  } else {
+    savedItem.count++
+  }
+  list.sort((a, b) => b.count - a.count).sort((a, b) => b.rank - a.rank)
+}
+
 const gacha301 = (type, data, info) => {
   let item
   let { isUp4, isUp5, count4Up, count5Up } = info
@@ -57,10 +70,22 @@ const gacha301 = (type, data, info) => {
   return [item, Object.assign({}, info, { isUp4, isUp5, count4Up, count5Up })]
 }
 
+const gacha200 = (type, data, info) => {
+  let item
+  if (type === 5) {
+    item = randomItem(data.r5)
+  } else if (type === 4) {
+    item = randomItem(data.r4)
+  } else {
+    item = randomItem(data.r3)
+  }
+  return [item, info]
+}
+
 const compareInfo = (newInfo, info) => {
   const obj = {}
   infoKeys.forEach(key => {
-    if (newInfo[key] !== info[key]) {
+    if (newInfo[key] !== info[key] || key === 'list') {
       obj[key] = newInfo[key]
     }
   })
@@ -78,16 +103,23 @@ const detectGachType = (info, data, times = 1) => {
     if (type === 5) {
       got5 = true
     }
-    const [item, newInfo] = gacha301(type, data, infoTmp)
+    let gachaResult
+    if (data.type === '301') {
+      gachaResult = gacha301(type, data, infoTmp)
+    } else if (data.type === '200') {
+      gachaResult = gacha200(type, data, infoTmp)
+    }
+    const [item, newInfo] = gachaResult
     info = newInfo
     result.push(item)
+    recordCardList(item, info)
   }
   const newInfo = compareInfo(info, infoTmp)
   return [result, newInfo]
 }
 
 const preData = (data) => {
-  let obj = {}
+  let obj = { type: data.gacha_type }
   obj.r3 = data.r3_prob_list
   obj.r4up = data.r4_up_items.map(item => {
     item.rank = '4'

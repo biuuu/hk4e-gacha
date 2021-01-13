@@ -45,8 +45,13 @@ function createGachaInfo(id) {
     },
     resetAll: () => {
       infoKeys.forEach(key => {
-        infoCollection[key].set(0)
-        info[key] = 0
+        if (key === 'list') {
+          infoCollection[key].set([])
+          info[key] = []
+        } else {
+          infoCollection[key].set(0)
+          info[key] = 0
+        }
       })
       saveInfo(id, info)
     }
