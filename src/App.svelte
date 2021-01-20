@@ -3,6 +3,7 @@
 	import gachaWith from './gacha'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'
+import { select_option } from 'svelte/internal';
 
 	let id = ''
 	let data
@@ -11,10 +12,14 @@
 	let list = []
 	let type = '301'
 	let idIndex = 0
+	let mode = 0
+	let ssrLimit = 3
 	let types = [
 		{ id: '301', text: '角色UP' },
 		{ id: '200', text: '常驻' }
 	]
+
+	const formatNum = new Intl.NumberFormat('zh-CN', { notation: "standard" })
 
 	const initCount = (val) => tweened(val, {
 		duration: 400,
@@ -50,16 +55,50 @@
 		getData()
 	}
 
-	const gacha = () => {
-		list = gachaWith(id, data, 'to5')
+	const sleep = (ts) => {
+		return new Promise(rev => {
+			setTimeout(rev, ts)
+		})
 	}
 
-	const gacha10 = () => {
-		list = gachaWith(id, data, 10)
+	const gacha = async () => {
+		list = await gachaWith(id, data, 'to5')
 	}
 
-	const gacha1 = () => {
-		list = gachaWith(id, data, 1)
+	const gacha10 = async () => {
+		list = await gachaWith(id, data, 10)
+	}
+
+	const gacha1 = async () => {
+		list = await gachaWith(id, data, 1)
+	}
+
+	let running = false
+	const gachaLimit10 = async () => {
+		if (running) return
+		running = true
+		let step = 1000
+		let ssr = 0
+		clear()
+		if (ssrLimit > 10) ssrLimit = 10
+		else if (ssrLimit < 1) ssrLimit = 1
+
+		while (ssr < ssrLimit) {
+			for (let i = 0; i < step; i++) {
+				list = await gachaWith(id, data, 10)
+				ssr = 0
+				list.forEach(item => {
+					if (item.rank === '5') {
+						ssr++
+					}
+				})
+				if (ssr >= ssrLimit) {
+					break
+				}
+			}
+			await sleep(100)
+		}
+		running = false
 	}
 
 	const getInfo = async () => {
@@ -79,6 +118,21 @@
 		})
 	}
 
+	const changeMode = () => {
+		if (mode === 1) {
+			mode = 0
+		} else {
+			mode = 1
+		}
+	}
+
+	const gachaLimit = async () => {
+		clear()
+		if (ssrLimit > 10) ssrLimit = 10
+		else if (ssrLimit < 1) ssrLimit = 1
+		list = await gachaWith(id, data, 'limit', [ssrLimit, 10])
+	}
+
 	const clear = () => {
 		gachaInfo.resetAll()
 		list = []
@@ -88,24 +142,47 @@
 </script>
 
 <div class="content">
-<button on:click={gacha}>SSR</button>
-<button on:click={gacha10}>10</button>
-<button on:click={gacha1}>1</button>
-<button on:click={clear}>clear</button>
-<select bind:value={type}>
-	{#each types as item}
-	<option value={item.id}>{item.text}</option>
-	{/each}
-</select>
+<div class="area-btn">
+	<div>
+		{#if mode === 1}
+		<select bind:value={type}>
+			{#each types as item}
+			<option value={item.id}>{item.text}</option>
+			{/each}
+		</select>
+		<button on:click={gachaLimit10}>10抽</button>
+		<input type=number bind:value={ssrLimit} min=1 max=10>
+		<span>个SSR</span>
+		{:else}
+		<button on:click={gacha}>SSR</button>
+		<button on:click={gacha10}>10</button>
+		<button on:click={gacha1}>1</button>
+		<button on:click={clear}>clear</button>
+		<select bind:value={type}>
+			{#each types as item}
+			<option value={item.id}>{item.text}</option>
+			{/each}
+		</select>
+		{/if}
+	</div>
+	<div>
+		{#if mode === 1}
+		<button on:click={changeMode}>普通模式</button>
+		{:else}
+		<button on:click={changeMode}>特殊模式</button>
+		{/if}
+	</div>
+</div>
+
 <div>
-	<span>本次：{$count} | 一共：{$total}抽(￥{($total * 648 / (8080 / 160)).toFixed(2)})</span>
-	{#if $gachaInfo.until5}
+	<span>本次：{$count} | 一共：{formatNum.format($total)}抽(￥{formatNum.format($total * 648 / (8080 / 160))})</span>
+	{#if $gachaInfo.until5 && mode !==1}
 	<span>距离保底：90 - {$gachaInfo.until5} = {90 - $gachaInfo.until5}</span>
 	{/if}
 </div>
-<div>5星：{$twCount5}({r5}%) | 5星UP：<span class={$twCount5Up === 7 ? 'red': ''}>{$twCount5Up}</span>({r5up}%)</div>
-<div>4星：{$twCount4}({r4}%) | 4星UP：{$twCount4Up}({r4up}%)</div>
-<div>3星：{$twCount3}({r3}%)</div>
+<div>5星：{formatNum.format($twCount5)}({r5}%) | 5星UP：<span class={$twCount5Up === 7 ? 'red': ''}>{formatNum.format($twCount5Up)}</span>({r5up}%)</div>
+<div>4星：{formatNum.format($twCount4)}({r4}%) | 4星UP：{formatNum.format($twCount4Up)}({r4up}%)</div>
+<div>3星：{formatNum.format($twCount3)}({r3}%)</div>
 <div class="count-box">
 	{#each recordList as item}
 	<div class="{item.item_type === '武器' ? 'item-w': ''} rank rank-{item.rank}"><span>{item.item_name}</span><span class="no">{item.count}</span></div>
@@ -135,6 +212,10 @@ button {
 	margin-right: 8px;
 	cursor: pointer;
 	min-width: 62px;
+}
+.area-btn {
+	display: flex;
+	justify-content: space-between;
 }
 div {
 	margin: 2px 0;

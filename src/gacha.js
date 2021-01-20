@@ -96,29 +96,61 @@ const compareInfo = (newInfo, info) => {
   return obj
 }
 
-const detectGachType = (info, data, times = 1) => {
-  const result = []
+const detectGachType = async (info, data, times = 1, extraInfo) => {
+  let result = []
   let infoTmp = info
   let n = 0
   let got5 = false
-  while (times === 'to5' ? !got5 : n < times) {
-    n++
-    const [type, infoTmp] = decideRarity(info)
-    if (type === 5) {
-      got5 = true
+  const gachaAt = (ssrCount) => {
+    for (let i = 0; i < extraInfo[1]; i++) {
+      const [type, infoTmp] = decideRarity(info)
+      if (type === 5) {
+        ssrCount++
+      }
+      let gachaResult
+      if (data.type === '301') {
+        gachaResult = gacha301(type, data, infoTmp)
+      } else if (data.type === '200') {
+        gachaResult = gacha200(type, data, infoTmp)
+      }
+      let [item, newInfo] = gachaResult
+      info = newInfo
+      item = Object.assign({}, item)
+      result.push(item)
+      recordCardList(item, info)
     }
-    let gachaResult
-    if (data.type === '301') {
-      gachaResult = gacha301(type, data, infoTmp)
-    } else if (data.type === '200') {
-      gachaResult = gacha200(type, data, infoTmp)
-    }
-    let [item, newInfo] = gachaResult
-    info = newInfo
-    item = Object.assign({}, item)
-    result.push(item)
-    recordCardList(item, info)
+    return new Promise((rev) => {
+      setTimeout(() => rev(ssrCount))
+    })
   }
+  if (times === 'limit') {
+    let ssrCount = 0
+    while (ssrCount < extraInfo[0]) {
+      result = []
+      ssrCount = 0
+      ssrCount = await gachaAt(ssrCount)
+    }
+  } else {
+    while (times === 'to5' ? !got5 : n < times) {
+      n++
+      const [type, infoTmp] = decideRarity(info)
+      if (type === 5) {
+        got5 = true
+      }
+      let gachaResult
+      if (data.type === '301') {
+        gachaResult = gacha301(type, data, infoTmp)
+      } else if (data.type === '200') {
+        gachaResult = gacha200(type, data, infoTmp)
+      }
+      let [item, newInfo] = gachaResult
+      info = newInfo
+      item = Object.assign({}, item)
+      result.push(item)
+      recordCardList(item, info)
+    }
+  }
+  
   const newInfo = compareInfo(info, infoTmp)
   return [result, newInfo]
 }
@@ -151,11 +183,11 @@ const preData = (data) => {
   return obj
 }
 
-const gachaWith = (id, data, times = 1) => {
+const gachaWith = async (id, data, times = 1, extraInfo) => {
   const store = createGachaInfo(id)
   let info = get(store)
   let obj = preData(data)
-  const [result, newInfo] = detectGachType(info, obj, times)
+  const [result, newInfo] = await detectGachType(info, obj, times, extraInfo)
   store.setMulti(newInfo)
   return result
 }
