@@ -29,14 +29,14 @@ function createGachaInfo(id) {
       info[key] += 1
       saveInfo(id, info)
     },
-    setMulti: (obj) => {
+    setMulti: (obj, mode) => {
       for (let key in obj) {
         if (infoKeys.includes(key)) {
           infoCollection[key].set(obj[key])
           info[key] = obj[key]
         }
       }
-      saveInfo(id, info)
+      if (mode !== 'skip') saveInfo(id, info)
     },
     reset: (key) => {
       infoCollection[key].set(0)

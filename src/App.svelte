@@ -85,7 +85,7 @@ import { select_option } from 'svelte/internal';
 
 		while (ssr < ssrLimit) {
 			for (let i = 0; i < step; i++) {
-				list = await gachaWith(id, data, 10)
+				list = await gachaWith(id, data, 10, 'skip')
 				ssr = 0
 				list.forEach(item => {
 					if (item.rank === '5') {
@@ -124,13 +124,6 @@ import { select_option } from 'svelte/internal';
 		} else {
 			mode = 1
 		}
-	}
-
-	const gachaLimit = async () => {
-		clear()
-		if (ssrLimit > 10) ssrLimit = 10
-		else if (ssrLimit < 1) ssrLimit = 1
-		list = await gachaWith(id, data, 'limit', [ssrLimit, 10])
 	}
 
 	const clear = () => {
