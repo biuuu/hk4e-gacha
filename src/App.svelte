@@ -73,17 +73,24 @@ import { select_option } from 'svelte/internal';
 		list = await gachaWith(id, data, 1)
 	}
 
-	let running = false
+	let limitMode = 'init'
 	const gachaLimit10 = async () => {
-		if (running) return
-		running = true
+		if (limitMode === 'init' || limitMode === 'stop') {
+			clear()
+			limitMode = 'running'
+		} else if (limitMode === 'running') {
+			limitMode = 'pause'
+			return
+		} else {
+			limitMode = 'running'
+		}
 		let step = 1000
 		let ssr = 0
-		clear()
+
 		if (ssrLimit > 10) ssrLimit = 10
 		else if (ssrLimit < 1) ssrLimit = 1
 
-		while (ssr < ssrLimit) {
+		while (ssr < ssrLimit && limitMode !== 'pause') {
 			for (let i = 0; i < step; i++) {
 				list = await gachaWith(id, data, 10, 'skip')
 				ssr = 0
@@ -98,7 +105,9 @@ import { select_option } from 'svelte/internal';
 			}
 			await sleep(100)
 		}
-		running = false
+		if (limitMode === 'running') {
+			limitMode = 'stop'
+		}
 	}
 
 	const getInfo = async () => {
@@ -135,57 +144,62 @@ import { select_option } from 'svelte/internal';
 </script>
 
 <div class="content">
-<div class="area-btn">
-	<div>
-		{#if mode === 1}
-		<select bind:value={type}>
-			{#each types as item}
-			<option value={item.id}>{item.text}</option>
-			{/each}
-		</select>
-		<button on:click={gachaLimit10}>10抽</button>
-		<input type=number bind:value={ssrLimit} min=1 max=10>
-		<span>个SSR</span>
-		{:else}
-		<button on:click={gacha}>SSR</button>
-		<button on:click={gacha10}>10</button>
-		<button on:click={gacha1}>1</button>
-		<button on:click={clear}>clear</button>
-		<select bind:value={type}>
-			{#each types as item}
-			<option value={item.id}>{item.text}</option>
-			{/each}
-		</select>
-		{/if}
+	<div class="area-btn">
+		<div>
+			{#if mode === 1}
+			<select bind:value={type}>
+				{#each types as item}
+				<option value={item.id}>{item.text}</option>
+				{/each}
+			</select>
+			{#if limitMode === 'running'}
+			<button on:click={gachaLimit10}>暂停</button>
+			{:else}
+			<button on:click={gachaLimit10}>10抽</button>
+			{/if}
+			<input type=number bind:value={ssrLimit} min=1 max=10>
+			<span>个SSR</span>
+			{:else}
+			<button on:click={gacha}>SSR</button>
+			<button on:click={gacha10}>10</button>
+			<button on:click={gacha1}>1</button>
+			<button on:click={clear}>clear</button>
+			<select bind:value={type}>
+				{#each types as item}
+				<option value={item.id}>{item.text}</option>
+				{/each}
+			</select>
+			{/if}
+		</div>
+		<div>
+			{#if mode === 1}
+			<button on:click={changeMode}>普通模式</button>
+			{:else}
+			<button on:click={changeMode}>特殊模式</button>
+			{/if}
+		</div>
 	</div>
-	<div>
-		{#if mode === 1}
-		<button on:click={changeMode}>普通模式</button>
-		{:else}
-		<button on:click={changeMode}>特殊模式</button>
-		{/if}
+	<div style="white-space: nowrap">
+		<div>
+			<span>本次：{$count} | 一共：{formatNum.format($total)}抽(￥{formatNum.format($total * 648 / (8080 / 160))})</span>
+			{#if $gachaInfo.until5 && mode !==1}
+			<span>距离保底：90 - {$gachaInfo.until5} = {90 - $gachaInfo.until5}</span>
+			{/if}
+		</div>
+		<div>5星：{formatNum.format($twCount5)}({r5}%) | 5星UP：<span class={$twCount5Up === 7 ? 'red': ''}>{formatNum.format($twCount5Up)}</span>({r5up}%)</div>
+		<div>4星：{formatNum.format($twCount4)}({r4}%) | 4星UP：{formatNum.format($twCount4Up)}({r4up}%)</div>
+		<div>3星：{formatNum.format($twCount3)}({r3}%)</div>
+		<div class="count-box">
+			{#each recordList as item}
+			<div class="{item.item_type === '武器' ? 'item-w': ''} rank rank-{item.rank}"><span>{item.item_name}</span><span class="no">{item.count}</span></div>
+			{/each}
+		</div>
+		<div class="stage">
+			{#each list as item}
+				<span class={`rank rank-${item.rank} ${item.item_type === '武器' ? 'item-w': ''}`}> {item.item_name} </span>
+			{/each}
+		</div>
 	</div>
-</div>
-
-<div>
-	<span>本次：{$count} | 一共：{formatNum.format($total)}抽(￥{formatNum.format($total * 648 / (8080 / 160))})</span>
-	{#if $gachaInfo.until5 && mode !==1}
-	<span>距离保底：90 - {$gachaInfo.until5} = {90 - $gachaInfo.until5}</span>
-	{/if}
-</div>
-<div>5星：{formatNum.format($twCount5)}({r5}%) | 5星UP：<span class={$twCount5Up === 7 ? 'red': ''}>{formatNum.format($twCount5Up)}</span>({r5up}%)</div>
-<div>4星：{formatNum.format($twCount4)}({r4}%) | 4星UP：{formatNum.format($twCount4Up)}({r4up}%)</div>
-<div>3星：{formatNum.format($twCount3)}({r3}%)</div>
-<div class="count-box">
-	{#each recordList as item}
-	<div class="{item.item_type === '武器' ? 'item-w': ''} rank rank-{item.rank}"><span>{item.item_name}</span><span class="no">{item.count}</span></div>
-	{/each}
-</div>
-<div class="stage">
-	{#each list as item}
-		<span class={`rank rank-${item.rank} ${item.item_type === '武器' ? 'item-w': ''}`}> {item.item_name} </span>
-	{/each}
-</div>
 </div>
 
 <style>
