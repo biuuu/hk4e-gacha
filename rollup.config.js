@@ -8,6 +8,7 @@ import url from 'postcss-url';
 import postcss from 'rollup-plugin-postcss';
 import fs from 'fs-extra';
 import path from 'path';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
 fs.emptyDirSync('dist')
 fs.ensureDirSync('dist/static/')
@@ -80,7 +81,9 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
-
+		injectProcessEnv({
+			NODE_ENV: 'production'
+		}),
 		html({
 			attributes: {html: { lang: 'zh-CN' }},
 			meta: [{ charset: 'utf-8' }, {name: 'viewport', content: 'width=device-width, initial-scale=1'}],

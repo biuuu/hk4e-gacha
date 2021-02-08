@@ -48,6 +48,9 @@ function createGachaInfo(id) {
         if (key === 'list') {
           infoCollection[key].set([])
           info[key] = []
+        } else if (key === 'count4c' || key === 'count5c') {
+          infoCollection[key].set({})
+          info[key] = {}
         } else {
           infoCollection[key].set(0)
           info[key] = 0

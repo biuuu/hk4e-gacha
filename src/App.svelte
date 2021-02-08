@@ -3,7 +3,7 @@
 	import gachaWith from './gacha'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'
-import { select_option } from 'svelte/internal';
+	import LineChart from './LineChart.svelte'
 
 	let id = ''
 	let data
@@ -38,6 +38,8 @@ import { select_option } from 'svelte/internal';
 	$: gachaInfo = createGachaInfo(id)
 	$: id = info && info.data[type][idIndex].id
 	$: recordList = $gachaInfo.list
+	$: count4c = $gachaInfo.count4c
+	$: count5c = $gachaInfo.count5c
 	$: count.set(list.length)
 	$: total.set($gachaInfo.count5 + $gachaInfo.count4 + $gachaInfo.count3)
 	$: staticTotal = $gachaInfo.count5 + $gachaInfo.count4 + $gachaInfo.count3
@@ -141,6 +143,8 @@ import { select_option } from 'svelte/internal';
 		count.set(0)
 	}
 
+
+
 </script>
 
 <div class="content">
@@ -200,6 +204,8 @@ import { select_option } from 'svelte/internal';
 			{/each}
 		</div>
 	</div>
+	<LineChart data={count4c} total={$gachaInfo.count4} />
+	<LineChart data={count5c} total={$gachaInfo.count5} />
 </div>
 
 <style>

@@ -7,8 +7,15 @@ const rate5p = 0.053
 const rate4 = 0.051
 const rate4p = 0.51
 
+const incrColet = (data, count) => {
+  if (!data[count]) {
+    data[count] = 1
+  } else {
+    data[count] += 1
+  }
+}
 const decideRarity = (info) => {
-  let { count3, count4, count5, until4, until5 } = info
+  let { count3, count4, count5, until4, until5, count4c, count5c } = info
   until4++
   until5++
   let type = 3
@@ -17,17 +24,19 @@ const decideRarity = (info) => {
   const rate4c = until4 > 8 ? rate4p + rate5c : rate4 + rate5c
   if (until5 >= 90 || result < rate5c) {
     count5++
+    incrColet(count5c, until5)
     until5 = 0
     type = 5
   } else if (until4 >= 10 || result < rate4c) {
     count4++
+    incrColet(count4c, until4)
     until4 = 0
     type = 4
   } else {
     count3++
     type = 3
   }
-  return [type, Object.assign({}, info, { count3, count4, count5, until4, until5 })]
+  return [type, Object.assign({}, info, { count3, count4, count5, until4, until5, count4c, count5c })]
 }
 
 const recordCardList = (item, { list }) => {
@@ -101,7 +110,7 @@ const detectGachType = async (info, data, times = 1) => {
   let infoTmp = info
   let n = 0
   let got5 = false
-  
+
   while (times === 'to5' ? !got5 : n < times) {
     n++
     const [type, infoTmp] = decideRarity(info)
@@ -120,8 +129,8 @@ const detectGachType = async (info, data, times = 1) => {
     result.push(item)
     recordCardList(item, info)
   }
-  
-  
+
+
   const newInfo = compareInfo(info, infoTmp)
   return [result, newInfo]
 }
