@@ -57,6 +57,34 @@
     ],
     "301": [
       {
+        "id": "a3101d03239e0eb2a79c4b144c5197b296f087",
+        "title": {
+          "zh-cn": "「<color=#6957C2FF>鱼龙</color>灯昼」活动祈愿",
+          "zh-tw": "「<color=#6957C2FF>魚龍</color>燈晝」活動祈願",
+          "en-us": "Event Wish \"<color=#6957C2FF>Dance of</color> Lanterns\"",
+          "ko-kr": "「<color=#6957C2FF>용등</color>의 춤」이벤트 기원",
+          "ja-jp": " イベント祈願・「<color=#6957C2FF>魚龍</color>灯昼」",
+          "es-es": "Gachapón promocional «Danza <color=#6957C2FF>de las linternas</color>»",
+          "fr-fr": "Vœux événements : « Danse des <color=#6957C2FF>lanternes</color> »",
+          "ru-ru": "Молитва события: <color=#6957C2FF>Момент</color> цветения",
+          "th-th": "กิจกรรมอธิษฐาน \"<color=#6957C2FF>การเต้นรำใน</color>แสงโคม\"",
+          "vi-vn": "Sự kiện cầu nguyện <color=#6957C2FF>Ánh Đèn</color> Ngư Long",
+          "de-de": " Aktionsgebet „<color=#6957C2FF>Tanz</color> der Laternen“",
+          "id-id": "Event Permohonan - <color=#6957C2FF>Bunga</color> Bersemi",
+          "pt-pt": "Oração de Evento - <color=#6957C2FF>Dança</color> das Lanternas"
+        },
+        "r5up": [
+          {
+            "item_id": -1,
+            "item_type": "角色",
+            "item_name": "刻晴",
+            "item_img": "https://webstatic.mihoyo.com/upload/op-public/2021/01/25/520b55c9caea9a48a2944d76e440336a_8799414428561417528.png",
+            "item_attr": "雷",
+            "item_type_cn": "角色"
+          }
+        ]
+      },
+      {
         "id": "d86c391b7f731f5df2acdbe92138cbf1930cfa",
         "title": {
           "zh-cn": "「<color=#369697FF>烟火</color>之邀」活动祈愿",
@@ -235,6 +263,7 @@
     ]
   },
   "id": [
+    "a3101d03239e0eb2a79c4b144c5197b296f087",
     "a37a19624270b092e7250edfabce541a3435c2",
     "a41d9f2ab5032e2a513caa8497e082d44e95d5",
     "d86c391b7f731f5df2acdbe92138cbf1930cfa",
