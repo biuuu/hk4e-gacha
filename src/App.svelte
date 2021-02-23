@@ -16,6 +16,7 @@
 	let ssrLimit = 3
 	let types = [
 		{ id: '301', text: '角色UP' },
+		{ id: '302', text: '武器UP' },
 		{ id: '200', text: '常驻' }
 	]
 

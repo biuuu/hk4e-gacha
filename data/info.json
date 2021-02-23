@@ -165,6 +165,42 @@
     ],
     "302": [
       {
+        "id": "f5760da9ae976ede525683f82749c81ac45334",
+        "title": {
+          "zh-cn": "「<color=#EF7C1AFF>神铸</color>赋形」活动祈愿",
+          "zh-tw": "「<color=#EF7C1AFF>神鑄</color>賦形」活動祈願",
+          "en-us": "Event Wish \"<color=#EF7C1AFF>Epitome</color> Invocation\"",
+          "ko-kr": "「<color=#EF7C1AFF>신</color>의 주조」 이벤트 기원",
+          "ja-jp": "イベント祈願・「<color=#EF7C1AFF>神鋳</color>賦形」",
+          "es-es": "Gachapón promocional «<color=#EF7C1AFF>Encarnación</color> divina»",
+          "fr-fr": "Vœux événements : « Incarnation <color=#EF7C1AFF>divine</color> »",
+          "ru-ru": "Молитва события: <color=#EF7C1AFF>Воплощение</color> божества",
+          "th-th": "กิจกรรมอธิษฐาน \"<color=#EF7C1AFF>สรรค์สร้าง</color>เซียน\"",
+          "vi-vn": "Sự kiện cầu nguyện Thân Hình <color=#EF7C1AFF>Thần Đúc</color>",
+          "de-de": "Aktionsgebet <color=#EF7C1AFF>Göttliches</color> Werk",
+          "id-id": "Event Permohonan - <color=#EF7C1AFF>Epitome</color> Invocation",
+          "pt-pt": "Oração de Evento - <color=#EF7C1AFF>Encarnação</color> Divina"
+        },
+        "r5up": [
+          {
+            "item_id": -1,
+            "item_type": "武器",
+            "item_name": "护摩之杖",
+            "item_img": "https://webstatic.mihoyo.com/upload/op-public/2021/01/25/3938c35c05c3c155e557f49013945d75_9201137672077612660.png",
+            "item_attr": "",
+            "item_type_cn": "武器"
+          },
+          {
+            "item_id": -2,
+            "item_type": "武器",
+            "item_name": "狼的末路",
+            "item_img": "https://webstatic.mihoyo.com/upload/op-public/2021/01/25/ffbbf83a3161c3ae7395ce52565ba641_544595668378488718.png",
+            "item_attr": "",
+            "item_type_cn": "武器"
+          }
+        ]
+      },
+      {
         "id": "a41d9f2ab5032e2a513caa8497e082d44e95d5",
         "title": {
           "zh-cn": "「<color=#EF7C1AFF>神铸</color>赋形」活动祈愿",
@@ -263,6 +299,7 @@
     ]
   },
   "id": [
+    "f5760da9ae976ede525683f82749c81ac45334",
     "a3101d03239e0eb2a79c4b144c5197b296f087",
     "a37a19624270b092e7250edfabce541a3435c2",
     "a41d9f2ab5032e2a513caa8497e082d44e95d5",
