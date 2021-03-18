@@ -8,6 +8,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "get": "node ./script/get-info.js",
     "start": "sirv dist --host"
   },
   "devDependencies": {
