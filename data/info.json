@@ -57,6 +57,34 @@
     ],
     "301": [
       {
+        "id": "71eaf9e3bf2b240122a3f78e9bbfd3e43032fd",
+        "title": {
+          "zh-cn": "「<color=#35AACCFF>白鹭</color>之庭」活动祈愿",
+          "zh-tw": "「<color=#35AACCFF>白鷺</color>之庭」活動祈願",
+          "en-us": "Event Wish \"<color=#35AACCFF>The Heron's</color> Court\"",
+          "ko-kr": "「<color=#35AACCFF>백로</color>의 정원」이벤트 기원",
+          "ja-jp": " イベント祈願・「<color=#35AACCFF>白鷺</color>の庭」",
+          "es-es": "Gachapón promocional «Elegancia <color=#35AACCFF>de la garza</color>»",
+          "fr-fr": "Vœux événements : « <color=#35AACCFF>Prestance</color> du héron »",
+          "ru-ru": "Молитва события: Сад <color=#35AACCFF>белой цапли</color>",
+          "th-th": "กิจกรรมอธิษฐาน \"ตำหนัก<color=#35AACCFF>กระเรียนขาว</color>\"",
+          "vi-vn": "Sự Kiện Cầu Nguyện <color=#35AACCFF>Bạch Hạc</color> Đình",
+          "de-de": "Aktionsgebet „<color=#35AACCFF>Kranich</color>hof“",
+          "id-id": "Event Permohonan - Pelataran <color=#35AACCFF>Bangau Putih</color>",
+          "pt-pt": "Oração de Evento - <color=#35AACCFF>Jardim </color>da Garça"
+        },
+        "r5up": [
+          {
+            "item_attr": "冰",
+            "item_id": -1,
+            "item_img": "https://webstatic.mihoyo.com/upload/op-public/2021/07/09/9c0f3b554fce6aded5ee0a7affb574f9_9174777476673560527.png",
+            "item_name": "神里绫华",
+            "item_type": "角色",
+            "item_type_cn": "角色"
+          }
+        ]
+      },
+      {
         "id": "f302f80aa026ff3aec8d7b187b92c0e78ee560",
         "title": {
           "zh-cn": "「<color=#369697FF>叶落</color>风随」活动祈愿",
@@ -248,6 +276,42 @@
       }
     ],
     "302": [
+      {
+        "id": "67c1da4f2bd4d7be8c0d18be56037898055567",
+        "title": {
+          "zh-cn": "「<color=#EF7C1AFF>神铸</color>赋形」活动祈愿",
+          "zh-tw": "「<color=#EF7C1AFF>神鑄</color>賦形」活動祈願",
+          "en-us": "Event Wish \"<color=#EF7C1AFF>Epitome</color> Invocation\"",
+          "ko-kr": "「<color=#EF7C1AFF>신</color>의 주조」 이벤트 기원",
+          "ja-jp": "イベント祈願・「<color=#EF7C1AFF>神鋳</color>賦形」",
+          "es-es": "Gachapón promocional «<color=#EF7C1AFF>Encarnación</color> divina»",
+          "fr-fr": "Vœux événements « Incarnation <color=#EF7C1AFF>divine</color> »",
+          "ru-ru": "Молитва события: <color=#EF7C1AFF>Воплощение</color> божества",
+          "th-th": "กิจกรรมอธิษฐาน \"<color=#EF7C1AFF>สรรค์สร้าง</color>เซียน\"",
+          "vi-vn": "Sự Kiện Cầu Nguyện Thân Hình <color=#EF7C1AFF>Thần Đúc</color>",
+          "de-de": "Aktionsgebet „<color=#EF7C1AFF>Göttliches</color> Werk“",
+          "id-id": "Event Permohonan - <color=#EF7C1AFF>Epitome</color> Invocation",
+          "pt-pt": "Oração de Evento - <color=#EF7C1AFF>Encarnação</color> Divina"
+        },
+        "r5up": [
+          {
+            "item_attr": "",
+            "item_id": -2,
+            "item_img": "https://webstatic.mihoyo.com/upload/op-public/2021/07/09/f9b7c58f098531312a41d334d516e870_3139224824663600336.png",
+            "item_name": "雾切之回光",
+            "item_type": "武器",
+            "item_type_cn": "武器"
+          },
+          {
+            "item_attr": "",
+            "item_id": -1,
+            "item_img": "https://webstatic.mihoyo.com/upload/op-public/2021/05/31/704a8b9e92a2c6bdf69f45b781d16dd4_3335785980537053372.png",
+            "item_name": "天空之脊",
+            "item_type": "武器",
+            "item_type_cn": "武器"
+          }
+        ]
+      },
       {
         "id": "f69e80e0c5e3a05b704410c29dbf7f66c92068",
         "title": {
@@ -455,6 +519,8 @@
     ]
   },
   "id": [
+    "67c1da4f2bd4d7be8c0d18be56037898055567",
+    "71eaf9e3bf2b240122a3f78e9bbfd3e43032fd",
     "f69e80e0c5e3a05b704410c29dbf7f66c92068",
     "f302f80aa026ff3aec8d7b187b92c0e78ee560",
     "699b72dc3428b62a6607c2dea368662dbcd985",
